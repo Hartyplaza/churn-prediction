@@ -94,7 +94,7 @@ div[data-testid="stRadio"] label {{ color: {TEXT_PRI} !important; font-size: 0.8
 # ── Load model ─────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    model_path = os.path.join(os.path.dirname(__file__), 'models', 'best_model_pipeline.pkl')
+    model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'best_model_pipeline.pkl')
     return joblib.load(model_path)
 
 def engineer_features(df):
