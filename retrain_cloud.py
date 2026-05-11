@@ -44,7 +44,8 @@ def train_and_save():
     
     df = pd.read_csv(data_path)
     df.drop(columns=['customerID'], inplace=True)
-    df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce').fillna(df['TotalCharges'].median())
+    df['TotalCharges'] = pd.to_numeric(df['TotalCharges'], errors='coerce')
+    df['TotalCharges'] = df['TotalCharges'].fillna(df['TotalCharges'].median())
     df['Churn'] = (df['Churn'] == 'Yes').astype(int)
     df = engineer_features(df)
     
