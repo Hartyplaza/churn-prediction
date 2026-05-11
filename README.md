@@ -19,9 +19,9 @@ Customer churn is one of the most costly problems in the telecom industry. Acqui
 
 | Component | URL |
 |---|---|
-| Streamlit UI | `http://localhost:8501` |
-| FastAPI Swagger Docs | `http://localhost:8000/docs` |
-| API Health Check | `http://localhost:8000/health` |
+| **Streamlit App (Live)** | https://churn-prediction-6ogsccahkfmnttdtwrhcqb.streamlit.app/ |
+| FastAPI Swagger Docs | `http://localhost:8000/docs` (run locally) |
+| API Health Check | `http://localhost:8000/health` (run locally) |
 
 ---
 
@@ -255,7 +255,8 @@ curl -X POST "http://localhost:8000/predict" \
 
 ## Author
 
-**Ofigwe Hart**
+**Ofigwe Hart**:
+
 Data Scientist / ML Engineer
 
 - LinkedIn: [linkedin.com/in/hart-ofigwe](https://www.linkedin.com/in/hart-ofigwe)
