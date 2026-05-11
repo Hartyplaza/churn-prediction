@@ -97,8 +97,30 @@ div[data-testid="stRadio"] label {{ color: {TEXT_PRI} !important; font-size: 0.8
 # ── Load model ─────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
+    import warnings
+    warnings.filterwarnings("ignore")
     model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'best_model_pipeline.pkl')
-    return joblib.load(model_path)
+    try:
+        model = joblib.load(model_path)
+        # Quick test to verify compatibility
+        _ = model.predict_proba(pd.DataFrame([{
+            'gender':'Male','SeniorCitizen':0,'Partner':'No','Dependents':'No',
+            'tenure':12,'PhoneService':'Yes','MultipleLines':'No',
+            'InternetService':'DSL','OnlineSecurity':'No','OnlineBackup':'No',
+            'DeviceProtection':'No','TechSupport':'No','StreamingTV':'No',
+            'StreamingMovies':'No','Contract':'Month-to-month',
+            'PaperlessBilling':'Yes','PaymentMethod':'Electronic check',
+            'MonthlyCharges':50.0,'charges_per_tenure':4.0,
+            'tenure_group':'new','num_addons':0,'risky_payment':1,
+            'no_support':1,'is_monthly':1
+        }]))
+        return model
+    except Exception:
+        import sys
+        sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+        from retrain_cloud import train_and_save
+        train_and_save()
+        return joblib.load(model_path)
 
 def engineer_features(df):
     df = df.copy()
